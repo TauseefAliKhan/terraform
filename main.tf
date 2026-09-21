@@ -12,23 +12,23 @@ provider "azurerm" {
 }
 
 # Resource group
-resource "azurerm_resource_group" "rg_devops_terraform" {
-  name     = "rg-devops-terraform"
-  location = "Central India"
+resource "azurerm_resource_group" "devops_terraform_rg" {
+  name     = "devops-terraform-rg"
+  location = "West India"
 }
 
 # Vnet
 resource "azurerm_virtual_network" "devops_terraform_vnet" {
   name                = "devops-terraform-vnet"
-  location            = azurerm_resource_group.rg_devops_terraform.location
-  resource_group_name = azurerm_resource_group.rg_devops_terraform.name
+  location            = azurerm_resource_group.devops_terraform_rg.location
+  resource_group_name = azurerm_resource_group.devops_terraform_rg.name
   address_space       = ["10.0.0.0/16"]
 }
 
 # Subnet
 resource "azurerm_subnet" "devops_terraform_subnet" {
   name                 = "devops-terraform-subnet"
-  resource_group_name  = azurerm_resource_group.rg_devops_terraform.name
+  resource_group_name  = azurerm_resource_group.devops_terraform_rg.name
   virtual_network_name = azurerm_virtual_network.devops_terraform_vnet.name
   address_prefixes     = ["10.0.1.0/24"]
 }
@@ -36,8 +36,8 @@ resource "azurerm_subnet" "devops_terraform_subnet" {
 #Public IP
 resource "azurerm_public_ip" "devops_terraform_public_ip" {
   name                = "devops-terraform-public-ip"
-  location            = azurerm_resource_group.rg_devops_terraform.location
-  resource_group_name = azurerm_resource_group.rg_devops_terraform.name
+  location            = azurerm_resource_group.devops_terraform_rg.location
+  resource_group_name = azurerm_resource_group.devops_terraform_rg.name
   allocation_method   = "Static"
   sku                 = "Standard"
 }
@@ -45,8 +45,8 @@ resource "azurerm_public_ip" "devops_terraform_public_ip" {
 #Network Security Group
 resource "azurerm_network_security_group" "devops_terraform_nsg" {
   name                = "devops-terraform-nsg"
-  location            = azurerm_resource_group.rg_devops_terraform.location
-  resource_group_name = azurerm_resource_group.rg_devops_terraform.name
+  location            = azurerm_resource_group.devops_terraform_rg.location
+  resource_group_name = azurerm_resource_group.devops_terraform_rg.name
 
   security_rule {
     name                       = "allow-ssh"
@@ -64,8 +64,8 @@ resource "azurerm_network_security_group" "devops_terraform_nsg" {
 #NIC
 resource "azurerm_network_interface" "devops_terraform_nic" {
   name                = "devops-terraform-nic"
-  location            = azurerm_resource_group.rg_devops_terraform.location
-  resource_group_name = azurerm_resource_group.rg_devops_terraform.name
+  location            = azurerm_resource_group.devops_terraform_rg.location
+  resource_group_name = azurerm_resource_group.devops_terraform_rg.name
 
   ip_configuration {
     name                          = "internal"
@@ -84,9 +84,9 @@ resource "azurerm_network_interface_security_group_association" "devops_terrafor
 # Virtual Machine
 resource "azurerm_linux_virtual_machine" "devops_terraform_vm" {
   name                = "devops-terraform-vm"
-  location            = azurerm_resource_group.rg_devops_terraform.location
-  resource_group_name = azurerm_resource_group.rg_devops_terraform.name
-  size                = "Standard_B2s_v2"
+  location            = azurerm_resource_group.devops_terraform_rg.location
+  resource_group_name = azurerm_resource_group.devops_terraform_rg.name
+  size                = "Standard_B2s"
 
   admin_username = "devops_terraform"
 

@@ -3,7 +3,7 @@ resource "azurerm_linux_virtual_machine" "devops_terraform_vm" {
   name                = "devops-terraform-vm"
   location            = azurerm_resource_group.devops_terraform_rg.location
   resource_group_name = azurerm_resource_group.devops_terraform_rg.name
-  size                = "Standard_B2ats_v2"
+  size                = "Standard_D2s_v3"
 
   admin_username = "devops_terraform"
 

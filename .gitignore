@@ -4,5 +4,4 @@
 *.tfplan
 crash.log
 crash.*.log
-*.tfvars
 *.tfvars.json

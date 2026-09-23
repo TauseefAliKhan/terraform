@@ -1,8 +1,8 @@
 # APP VM
 resource "azurerm_linux_virtual_machine" "devops_terraform_app_vm" {
   name                = "devops-terraform-app-vm"
-  location            = azurerm_resource_group.devops_terraform_rg.location
-  resource_group_name = azurerm_resource_group.devops_terraform_rg.name
+  location            = var.location
+  resource_group_name = var.resource_group_name
   size                = var.vm_size
 
   admin_username = "devops_terraform"
@@ -32,8 +32,8 @@ resource "azurerm_linux_virtual_machine" "devops_terraform_app_vm" {
 # DB VM
 resource "azurerm_linux_virtual_machine" "devops_terraform_db_vm" {
   name                = "devops-terraform-db-vm"
-  location            = azurerm_resource_group.devops_terraform_rg.location
-  resource_group_name = azurerm_resource_group.devops_terraform_rg.name
+  location            = var.location
+  resource_group_name = var.resource_group_name
   size                = var.vm_size
 
   admin_username = "devops_terraform"

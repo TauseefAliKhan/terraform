@@ -1,8 +1,8 @@
 #Network Security Group
 resource "azurerm_network_security_group" "devops_terraform_nsg" {
   name                = "devops-terraform-nsg"
-  location            = azurerm_resource_group.devops_terraform_rg.location
-  resource_group_name = azurerm_resource_group.devops_terraform_rg.name
+  location            = var.location
+  resource_group_name = var.resource_group_name
 
   security_rule {
     name                       = "allow-ssh"

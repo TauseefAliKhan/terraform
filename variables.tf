@@ -7,7 +7,7 @@ variable "location" {
 variable "vm_size" {
   description = "Azure VM size"
   type        = string
-  default     = "Standard_DS1_v2"
+  default     = "Standard_D2s_v3"
 }
 
 variable "vnet_address_space" {

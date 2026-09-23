@@ -19,6 +19,6 @@ resource "azurerm_network_security_group" "devops_terraform_nsg" {
 
 #NIC NSG Association
 resource "azurerm_network_interface_security_group_association" "devops_terraform_nic_nsg" {
-  network_interface_id      = azurerm_network_interface.devops_terraform_nic.id
+  network_interface_id      = azurerm_network_interface.devops_terraform_nic["application"].id
   network_security_group_id = azurerm_network_security_group.devops_terraform_nsg.id
 }

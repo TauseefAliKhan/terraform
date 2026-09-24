@@ -1,6 +1,6 @@
 #Network Security Group
 resource "azurerm_network_security_group" "devops_terraform_nsg" {
-  name                = "devops-terraform-nsg"
+  name                = "${local.project_name}-nsg"
   location            = var.location
   resource_group_name = var.resource_group_name
 

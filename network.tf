@@ -1,6 +1,6 @@
 # Vnet
 resource "azurerm_virtual_network" "devops_terraform_vnet" {
-  name                = "devops-terraform-vnet"
+  name                = "${local.project_name}-vnet"
   location            = var.location
   resource_group_name = var.resource_group_name
   address_space       = [var.vnet_address_space]
@@ -8,7 +8,7 @@ resource "azurerm_virtual_network" "devops_terraform_vnet" {
 
 resource "azurerm_subnet" "devops_terraform_subnet" {
   for_each             = var.subnets
-  name                 = each.key
+  name                 = "${local.project_name}-${each.key}-subnet"
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.devops_terraform_vnet.name
   address_prefixes     = [each.value]
@@ -16,7 +16,7 @@ resource "azurerm_subnet" "devops_terraform_subnet" {
 
 #Public IP
 resource "azurerm_public_ip" "devops_terraform_public_ip" {
-  name                = "devops-terraform-public-ip"
+  name                = "${local.project_name}-public-ip"
   location            = var.location
   resource_group_name = var.resource_group_name
   allocation_method   = "Static"
@@ -25,7 +25,7 @@ resource "azurerm_public_ip" "devops_terraform_public_ip" {
 
 resource "azurerm_network_interface" "devops_terraform_nic" {
   for_each            = var.subnets
-  name                = "${each.key}-nic"
+  name                = "${local.project_name}-${each.key}-nic"
   location            = var.location
   resource_group_name = var.resource_group_name
 

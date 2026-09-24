@@ -1,4 +1,4 @@
-resource_group_name = "devops-terraform-rg"
+resource_group_name = "devops-terraform-dev-rg"
 location            = "South India"
 vm_size             = "Standard_D2s_v3"
 vnet_address_space  = "10.0.0.0/16"

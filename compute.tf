@@ -1,6 +1,6 @@
 # APP VM
 resource "azurerm_linux_virtual_machine" "devops_terraform_app_vm" {
-  name                = "${local.project_name}-app-vm"
+  name                = "${local.project_name}-${local.environment}-app-vm"
   location            = var.location
   resource_group_name = var.resource_group_name
   size                = var.vm_size
@@ -34,7 +34,7 @@ resource "azurerm_linux_virtual_machine" "devops_terraform_app_vm" {
 
 # DB VM
 resource "azurerm_linux_virtual_machine" "devops_terraform_db_vm" {
-  name                = "${local.project_name}-db-vm"
+  name                = "${local.project_name}-${local.environment}-db-vm"
   location            = var.location
   resource_group_name = var.resource_group_name
   size                = var.vm_size
